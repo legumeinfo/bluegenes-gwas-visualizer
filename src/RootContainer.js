@@ -18,6 +18,13 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		const obj = {};
 		data.forEach(d => {
 			d.results.forEach(r => {
+				if (
+					!r.marker ||
+					!r.pValue ||
+					!r.marker.chromosome ||
+					!r.marker.chromosomeLocation
+				)
+					return;
 				const { primaryIdentifier } = r.phenotype;
 				const { chromosome, chromosomeLocation } = r.marker;
 				if (!obj[primaryIdentifier])
@@ -25,12 +32,14 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						id: primaryIdentifier,
 						data: []
 					};
-				const allDigits = chromosome.secondaryIdentifier.match(/\d+/g);
-				const xAxisVal = allDigits[allDigits.length - 1] * 1 - 1;
+				const allDigits = chromosome.secondaryIdentifier.match(/\d+/g) || [];
+				const xAxisVal = allDigits.length
+					? allDigits[allDigits.length - 1] * 1 - 1
+					: 0;
 				obj[primaryIdentifier].data.push({
 					x: xAxisVal + chromosomeLocation.start / chromosome.length,
 					y: -1 * Math.log10(r.pValue),
-					tooltip: r.marker.primaryIdentifier
+					tooltip: r.marker && r.marker.primaryIdentifier
 				});
 			});
 		});
@@ -41,7 +50,11 @@ const RootContainer = ({ serviceUrl, entity }) => {
 			<span className="chart-title">GWAS Visualizer</span>
 			{data.length ? (
 				<div className="graph">
-					<Scatterplot graphData={graphData} />
+					{graphData.length ? (
+						<Scatterplot graphData={graphData} />
+					) : (
+						<h1>No data found to visualize</h1>
+					)}
 				</div>
 			) : (
 				<h1>Loading...</h1>
