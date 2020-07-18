@@ -10,7 +10,8 @@ const Scatterplot = ({ graphData }) => (
 		useMesh={false}
 		axisTop={null}
 		axisRight={null}
-		nodeSize={13}
+		nodeSize={15}
+		colors={{ scheme: 'set1' }}
 		blendMode="multiply"
 		tooltip={({ node }) => (
 			<div
