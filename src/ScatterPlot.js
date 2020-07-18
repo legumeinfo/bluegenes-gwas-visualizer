@@ -6,7 +6,7 @@ const Scatterplot = ({ graphData }) => (
 		data={graphData}
 		height={window.innerHeight - 150}
 		width={window.innerWidth - 50}
-		margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
+		margin={{ top: 100, right: 90, bottom: 60, left: 90 }}
 		useMesh={false}
 		axisTop={null}
 		axisRight={null}
@@ -70,11 +70,11 @@ const Scatterplot = ({ graphData }) => (
 		}}
 		legends={[
 			{
-				anchor: 'bottom-right',
-				direction: 'column',
+				anchor: 'top-left',
+				direction: 'row',
 				justify: false,
-				translateX: 130,
-				translateY: 0,
+				translateX: 0,
+				translateY: -60,
 				itemWidth: 100,
 				itemHeight: 12,
 				itemsSpacing: 5,
