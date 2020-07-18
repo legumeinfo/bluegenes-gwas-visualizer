@@ -29,7 +29,8 @@ const RootContainer = ({ serviceUrl, entity }) => {
 				const xAxisVal = allDigits[allDigits.length - 1] * 1;
 				obj[primaryIdentifier].data.push({
 					x: -1 * Math.log10(r.pValue),
-					y: xAxisVal + chromosomeLocation.start / chromosome.length
+					y: xAxisVal + chromosomeLocation.start / chromosome.length,
+					tooltip: r.marker.primaryIdentifier
 				});
 			});
 		});
@@ -39,7 +40,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		<div className="rootContainer">
 			<span className="chart-title">GWAS Visualizer</span>
 			{data.length ? (
-				<div style={{ height: '100%', width: '100%' }}>
+				<div className="graph">
 					<Scatterplot graphData={graphData} />
 				</div>
 			) : (

@@ -7,12 +7,47 @@ const Scatterplot = ({ graphData }) => (
 		height={window.innerHeight - 150}
 		width={window.innerWidth - 50}
 		margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
-		xScale={{ type: 'linear' }}
-		yScale={{ type: 'linear' }}
 		useMesh={false}
-		zoomable={true}
 		axisTop={null}
 		axisRight={null}
+		tooltip={({ node }) => (
+			<div
+				style={{
+					background: 'white',
+					color: 'inherit',
+					fontSize: 'inherit',
+					borderRadius: 2,
+					boxShadow: 'rgba(0, 0, 0, 0.25) 0px 1px 2px',
+					padding: '5px 9px'
+				}}
+			>
+				<div
+					style={{ whiteSpace: 'pre', display: 'flex', alignItems: 'center' }}
+				>
+					<span
+						style={{
+							display: 'block',
+							width: 12,
+							height: 12,
+							background: node.style.color,
+							marginRight: 7
+						}}
+					></span>
+					<span>
+						<strong>{node.data.serieId}: </strong>
+						{node.data.tooltip}
+					</span>
+				</div>
+				<div>
+					<strong>Marker Position: </strong>
+					{node.data.y}
+				</div>
+				<div>
+					<strong>log10(p-value): </strong>
+					{node.data.x}
+				</div>
+			</div>
+		)}
 		axisBottom={{
 			orient: 'bottom',
 			tickSize: 5,
