@@ -4,14 +4,21 @@ import Scatterplot from './ScatterPlot';
 
 const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const [graphData, setGraphData] = useState([]);
 
 	useEffect(() => {
+		setLoading(true);
 		let { value } = entity;
 		queryData({
 			serviceUrl: serviceUrl,
 			geneId: value
-		}).then(data => setData(data));
+		})
+			.then(data => {
+				setData(data);
+				setLoading(false);
+			})
+			.catch(() => setLoading(false));
 	}, []);
 
 	useEffect(() => {
@@ -48,7 +55,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	return (
 		<div className="rootContainer">
 			<span className="chart-title">GWAS Visualizer</span>
-			{data.length ? (
+			{!loading ? (
 				<div className="graph">
 					{graphData.length ? (
 						<Scatterplot graphData={graphData} />
