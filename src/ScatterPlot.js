@@ -4,8 +4,8 @@ import { ScatterPlot } from '@nivo/scatterplot';
 const Scatterplot = ({ graphData }) => (
 	<ScatterPlot
 		data={graphData}
-		height={500}
-		width={500}
+		height={window.innerHeight - 150}
+		width={window.innerWidth - 50}
 		margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
 		xScale={{ type: 'linear' }}
 		yScale={{ type: 'linear' }}

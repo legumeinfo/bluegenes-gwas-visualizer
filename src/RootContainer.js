@@ -38,7 +38,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	return (
 		<div className="rootContainer">
 			{data.length ? (
-				<div style={{ height: 500, width: 500 }}>
+				<div style={{ height: '100%', width: '100%' }}>
 					<Scatterplot graphData={graphData} />
 				</div>
 			) : (
