@@ -37,6 +37,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	}, [data]);
 	return (
 		<div className="rootContainer">
+			<span className="chart-title">GWAS Visualizer</span>
 			{data.length ? (
 				<div style={{ height: '100%', width: '100%' }}>
 					<Scatterplot graphData={graphData} />
