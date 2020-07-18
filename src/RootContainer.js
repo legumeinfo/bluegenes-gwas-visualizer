@@ -26,10 +26,10 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						data: []
 					};
 				const allDigits = chromosome.secondaryIdentifier.match(/\d+/g);
-				const xAxisVal = allDigits[allDigits.length - 1] * 1;
+				const xAxisVal = allDigits[allDigits.length - 1] * 1 - 1;
 				obj[primaryIdentifier].data.push({
-					x: -1 * Math.log10(r.pValue),
-					y: xAxisVal + chromosomeLocation.start / chromosome.length,
+					x: xAxisVal + chromosomeLocation.start / chromosome.length,
+					y: -1 * Math.log10(r.pValue),
 					tooltip: r.marker.primaryIdentifier
 				});
 			});

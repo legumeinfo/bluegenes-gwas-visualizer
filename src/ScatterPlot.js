@@ -42,11 +42,11 @@ const Scatterplot = ({ graphData }) => (
 				</div>
 				<div>
 					<strong>Marker Position: </strong>
-					{node.data.y}
+					{node.data.x}
 				</div>
 				<div>
 					<strong>log10(p-value): </strong>
-					{node.data.x}
+					{node.data.y}
 				</div>
 			</div>
 		)}
