@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { queryData } from './query';
+import Scatterplot from './ScatterPlot';
 
 const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
@@ -36,10 +37,12 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	}, [data]);
 	return (
 		<div className="rootContainer">
-			{data.length && graphData.length ? (
-				<h1>Your Data Viz Here</h1>
+			{data.length ? (
+				<div style={{ height: 500, width: 500 }}>
+					<Scatterplot graphData={graphData} />
+				</div>
 			) : (
-				<h1>Loading</h1>
+				<h1>Loading...</h1>
 			)}
 		</div>
 	);
