@@ -73,10 +73,9 @@ const Scatterplot = ({ graphData }) => (
 			{
 				anchor: 'top-left',
 				direction: 'row',
-				justify: false,
 				translateX: 0,
 				translateY: -60,
-				itemWidth: 100,
+				itemWidth: 250,
 				itemHeight: 12,
 				itemsSpacing: 5,
 				itemDirection: 'left-to-right',
