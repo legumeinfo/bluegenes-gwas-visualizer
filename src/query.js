@@ -1,4 +1,4 @@
-const query = geneId => ({
+const soymineQuery = geneId => ({
 	from: 'GWAS',
 	select: [
 		'results.study.primaryIdentifier',
@@ -20,7 +20,30 @@ const query = geneId => ({
 	]
 });
 
+const humanMineQuery = geneId => ({
+	from: 'GWAS',
+	select: [
+		'results.pValue',
+		'results.phenotype',
+		'results.associatedGenes.chromosomeLocation.start',
+		'results.associatedGenes.chromosome.length',
+		'results.associatedGenes.chromosome.primaryIdentifier',
+		'results.associatedGenes.primaryIdentifier'
+	],
+	where: [
+		{
+			path: 'id',
+			op: '=',
+			value: geneId
+		}
+	]
+});
+
 const queryData = ({ geneId, serviceUrl, imjsClient = imjs }) => {
+	const query =
+		serviceUrl == 'https://www.humanmine.org/humanmine'
+			? humanMineQuery
+			: soymineQuery;
 	const service = new imjsClient.Service({
 		root: serviceUrl
 	});
