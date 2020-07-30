@@ -12,10 +12,9 @@ const soymineQuery = geneId => ({
 	joins: ['results.study', 'results.phenotype', 'results.marker'],
 	where: [
 		{
-			path: 'id',
-			op: '=',
-			value: geneId,
-			code: 'A'
+			path: 'results.marker.id',
+			op: 'ONE OF',
+			values: geneId
 		}
 	]
 });
@@ -32,9 +31,9 @@ const humanMineQuery = geneId => ({
 	],
 	where: [
 		{
-			path: 'id',
-			op: '=',
-			value: geneId
+			path: 'results.associatedGenes.id',
+			op: 'ONE OF',
+			values: geneId
 		}
 	]
 });

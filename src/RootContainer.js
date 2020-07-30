@@ -12,7 +12,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		let { value } = entity;
 		queryData({
 			serviceUrl: serviceUrl,
-			geneId: value
+			geneId: !Array.isArray(value) ? [value] : value
 		})
 			.then(data => {
 				setData(data);
