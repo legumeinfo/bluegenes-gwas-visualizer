@@ -6,6 +6,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [graphData, setGraphData] = useState([]);
+	const [minAxis, setminAxis] = useState({});
 
 	useEffect(() => {
 		setLoading(true);
@@ -23,6 +24,10 @@ const RootContainer = ({ serviceUrl, entity }) => {
 
 	useEffect(() => {
 		const obj = {};
+		let minX = Number.MAX_SAFE_INTEGER,
+			minY = minX,
+			maxX = Number.MIN_SAFE_INTEGER,
+			maxY = maxX;
 		data.forEach(d => {
 			d.results.forEach(r => {
 				if (serviceUrl == 'https://www.humanmine.org/humanmine') {
@@ -40,9 +45,15 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						const xAxisVal = allDigits.length
 							? allDigits[allDigits.length - 1] * 1 - 1
 							: 0;
+						const x = xAxisVal + start / length;
+						const y = -1 * Math.log10(r.pValue);
+						minX = Math.min(x, minX);
+						minY = Math.min(y, minY);
+						maxX = Math.max(x, maxX);
+						maxY = Math.max(y, maxY);
 						obj[r.phenotype].data.push({
-							x: xAxisVal + start / length,
-							y: -1 * Math.log10(r.pValue)
+							x,
+							y
 						});
 					});
 				} else {
@@ -64,15 +75,22 @@ const RootContainer = ({ serviceUrl, entity }) => {
 					const xAxisVal = allDigits.length
 						? allDigits[allDigits.length - 1] * 1 - 1
 						: 0;
+					const x = xAxisVal + chromosomeLocation.start / chromosome.length;
+					const y = -1 * Math.log10(r.pValue);
+					minX = Math.min(x, minX);
+					minY = Math.min(y, minY);
+					maxX = Math.max(x, maxX);
+					maxY = Math.max(y, maxY);
 					obj[primaryIdentifier].data.push({
-						x: xAxisVal + chromosomeLocation.start / chromosome.length,
-						y: -1 * Math.log10(r.pValue),
+						x,
+						y,
 						tooltip: r.marker && r.marker.primaryIdentifier
 					});
 				}
 			});
 		});
 		setGraphData([...Object.values(obj)]);
+		setminAxis({ minX, minY, maxX, maxY });
 	}, [data]);
 
 	return (
@@ -81,7 +99,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 			{!loading ? (
 				<div className="graph">
 					{graphData.length ? (
-						<Scatterplot graphData={graphData} />
+						<Scatterplot graphData={graphData} minAxis={minAxis} />
 					) : (
 						<h1>No data found to visualize</h1>
 					)}

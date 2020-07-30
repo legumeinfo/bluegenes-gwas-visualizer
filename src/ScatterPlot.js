@@ -1,12 +1,22 @@
 import React from 'react';
 import { ScatterPlot } from '@nivo/scatterplot';
 
-const Scatterplot = ({ graphData }) => (
+const Scatterplot = ({ graphData, minAxis }) => (
 	<ScatterPlot
 		data={graphData}
 		height={window.innerHeight - 150}
 		width={window.innerWidth - 50}
 		margin={{ top: 100, right: 90, bottom: 60, left: 90 }}
+		xScale={{
+			type: 'linear',
+			min: Math.round(minAxis.minX) - 5,
+			max: Math.round(minAxis.maxX) + 5
+		}}
+		yScale={{
+			type: 'linear',
+			min: Math.round(minAxis.minY) - 5,
+			max: Math.round(minAxis.maxY) + 5
+		}}
 		useMesh={false}
 		axisTop={null}
 		axisRight={null}
