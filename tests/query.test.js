@@ -3,8 +3,29 @@ import { queryData } from '../src/query';
 
 describe('query', () => {
 	const mockData = {
-		entity: 875000005,
-		service: 'https://mines.legumeinfo.org/soymine/'
+		entity: [
+			1215734,
+			1161508,
+			1020855,
+			1205381,
+			1183373,
+			1067416,
+			1010852,
+			1110017,
+			1144839,
+			1202463,
+			1117907,
+			1086537,
+			1163220,
+			1216153,
+			1038163,
+			1172531,
+			1151310,
+			1218598,
+			1004746,
+			1204975
+		],
+		service: 'https://www.humanmine.org/humanmine'
 	};
 
 	test('should return a promise resolving with correct data', () => {
