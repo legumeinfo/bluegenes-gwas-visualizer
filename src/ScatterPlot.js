@@ -14,7 +14,17 @@ const Scatterplot = ({ graphData, minAxis }) => (
 			}}
 		>
 			{graphData.map(data => (
-				<div key={data.id}>
+				<div key={data.id} style={{ display: 'flex', alignItems: 'center' }}>
+					<span
+						style={{
+							background: data.color,
+							borderRadius: '50%',
+							display: 'block',
+							width: 12,
+							height: 12,
+							marginRight: 7
+						}}
+					></span>
 					<span>{data.id}</span>
 				</div>
 			))}
@@ -38,7 +48,7 @@ const Scatterplot = ({ graphData, minAxis }) => (
 			axisTop={null}
 			axisRight={null}
 			nodeSize={15}
-			colors={{ scheme: 'set1' }}
+			colors={graphData.map(c => c.color)}
 			blendMode="multiply"
 			tooltip={({ node }) => (
 				<div

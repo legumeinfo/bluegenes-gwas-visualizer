@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { queryData } from './query';
 import Scatterplot from './ScatterPlot';
+import colors from './color.constant';
 
 const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
@@ -27,7 +28,8 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		let minX = Number.MAX_SAFE_INTEGER,
 			minY = minX,
 			maxX = Number.MIN_SAFE_INTEGER,
-			maxY = maxX;
+			maxY = maxX,
+			index = 0;
 		data.forEach(d => {
 			d.results.forEach(r => {
 				if (serviceUrl == 'https://www.humanmine.org/humanmine') {
@@ -39,7 +41,8 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						if (!obj[r.phenotype])
 							obj[r.phenotype] = {
 								id: r.phenotype,
-								data: []
+								data: [],
+								color: colors[index++]
 							};
 						const allDigits = primaryIdentifier.match(/\d+/g) || [];
 						const xAxisVal = allDigits.length
@@ -69,7 +72,8 @@ const RootContainer = ({ serviceUrl, entity }) => {
 					if (!obj[primaryIdentifier])
 						obj[primaryIdentifier] = {
 							id: primaryIdentifier,
-							data: []
+							data: [],
+							color: colors[index++]
 						};
 					const allDigits = chromosome.secondaryIdentifier.match(/\d+/g) || [];
 					const xAxisVal = allDigits.length
