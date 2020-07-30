@@ -42,7 +42,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 							obj[r.phenotype] = {
 								id: r.phenotype,
 								data: [],
-								color: colors[index++]
+								color: colors[index++ % colors.length]
 							};
 						const allDigits = primaryIdentifier.match(/\d+/g) || [];
 						const xAxisVal = allDigits.length

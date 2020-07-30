@@ -22,7 +22,7 @@ const Scatterplot = ({ graphData, minAxis }) => (
 							display: 'block',
 							width: 12,
 							height: 12,
-							marginRight: 7
+							margin: '5px 7px 2px 10px'
 						}}
 					></span>
 					<span>{data.id}</span>
