@@ -12,7 +12,7 @@ const soymineQuery = geneId => ({
 	joins: ['results.study', 'results.phenotype', 'results.marker'],
 	where: [
 		{
-			path: 'results.marker.id',
+			path: 'id',
 			op: 'ONE OF',
 			values: geneId
 		}

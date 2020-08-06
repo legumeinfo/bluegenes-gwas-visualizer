@@ -41,8 +41,8 @@
     	var elem = document.getElementById('yourDiv'),
     		//InterMine service, including URL and token.
     		imURL = {
-          // root: 'https://mines.legumeinfo.org/soymine/',
-          root: 'https://www.humanmine.org/humanmine'
+          root: 'https://mines.legumeinfo.org/soymine/',
+          // root: 'https://www.humanmine.org/humanmine'
     			//could include token here too if we had one
     		},
     		//this is an example of data that could be passed to this tool be BlueGenes
@@ -51,13 +51,13 @@
     		dataToInitialiseToolWith = {
           'Gene': {
             class: 'Gene',
-            format: 'id',
+            format: 'ids',
             // right now this id corresponds to Human GATA1
             // this is a bit fragile since IDs change with every build
             // but we don't want to make the code more complicated than
             // needed for the demo.
-            value: [1215734, 1161508, 1020855, 1205381, 1183373, 1067416, 1010852, 1110017, 1144839, 1202463, 1117907, 1086537, 1163220, 1216153, 1038163, 1172531, 1151310, 1218598, 1004746, 1204975] // humanmine
-            // value: 875000005 // flymine
+            // value: [1215734, 1161508, 1020855, 1205381, 1183373, 1067416, 1010852, 1110017, 1144839, 1202463, 1117907, 1086537, 1163220, 1216153, 1038163, 1172531, 1151310, 1218598, 1004746, 1204975] // humanmine
+            value: [875000005, 875004161, 875006189] // flymine
           }
     		},
     		toolState = {}, //to be confirmed how we use this.
