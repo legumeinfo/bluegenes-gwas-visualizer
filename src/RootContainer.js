@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { queryData } from './query';
 import Scatterplot from './ScatterPlot';
 import colors from './color.constant';
+import Loading from './Loading';
 
 const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
@@ -109,7 +110,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 					)}
 				</div>
 			) : (
-				<h1>Loading...</h1>
+				<Loading />
 			)}
 		</div>
 	);

@@ -13,6 +13,7 @@
 	.rootContainer {
 		border: 1px solid black;
     padding: 20px;
+    height: max-content;
     .chart-title {
       font-weight: 300;
       font-size: 24px;
@@ -20,6 +21,67 @@
       display: flex;
       justify-content: center;
     }
+    @keyframes inner-container {
+      0% { transform: translate(6px,40px) scale(0); }
+      25% { transform: translate(6px,40px) scale(0); }
+      50% { transform: translate(6px,40px) scale(1); }
+      75% { transform: translate(40px,40px) scale(1); }
+    100% { transform: translate(74px,40px) scale(1); }
+    }
+    @keyframes inner-container-r {
+      0% { transform: translate(74px,40px) scale(1); }
+    100% { transform: translate(74px,40px) scale(0); }
+    }
+    @keyframes inner-container-c {
+      0% { background: #93dbe9 }
+      25% { background: #3b4368 }
+      50% { background: #5e6fa3 }
+      75% { background: #689cc5 }
+    100% { background: #93dbe9 }
+    }
+    .inner-container div {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      transform: translate(40px,40px) scale(1);
+      background: #93dbe9;
+      animation: inner-container 2.0408163265306123s infinite cubic-bezier(0,0.5,0.5,1);
+    }
+    .inner-container div:nth-child(1) {
+      background: #689cc5;
+      transform: translate(74px,40px) scale(1);
+      animation: inner-container-r 0.5102040816326531s infinite cubic-bezier(0,0.5,0.5,1), inner-container-c 2.0408163265306123s infinite step-start;
+    }.inner-container div:nth-child(2) {
+      animation-delay: -0.5102040816326531s;
+      background: #93dbe9;
+    }.inner-container div:nth-child(3) {
+      animation-delay: -1.0204081632653061s;
+      background: #689cc5;
+    }.inner-container div:nth-child(4) {
+      animation-delay: -1.530612244897959s;
+      background: #5e6fa3;
+    }.inner-container div:nth-child(5) {
+      animation-delay: -2.0408163265306123s;
+      background: #3b4368;
+    }
+    .loading-container {
+      width: 100%;
+      height: 88px;
+      display: inline-block;
+      overflow: hidden;
+      background: none;
+    }
+    .inner-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform: translateZ(0) scale(0.88);
+      backface-visibility: hidden;
+      transform-origin: 0 0;
+      left: 46%;
+    }
+    .inner-container div { box-sizing: content-box; }
     .graph {
       height: '100%';
       width: '100%';
