@@ -31,7 +31,7 @@ const humanMineQuery = geneId => ({
 	],
 	where: [
 		{
-			path: 'results.associatedGenes.id',
+			path: 'id',
 			op: 'ONE OF',
 			values: geneId
 		}
