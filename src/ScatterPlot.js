@@ -3,28 +3,10 @@ import { ScatterPlot } from '@nivo/scatterplot';
 
 const Scatterplot = ({ graphData, minAxis }) => (
 	<>
-		<div
-			style={{
-				display: 'flex',
-				justifyContent: 'space-evenly',
-				flexFlow: 'wrap',
-				marginTop: 20,
-				fontFamily: 'sans-serif',
-				fontSize: 13
-			}}
-		>
+		<div className="graph-container">
 			{graphData.map(data => (
-				<div key={data.id} style={{ display: 'flex', alignItems: 'center' }}>
-					<span
-						style={{
-							background: data.color,
-							borderRadius: '50%',
-							display: 'block',
-							width: 12,
-							height: 12,
-							margin: '5px 7px 2px 10px'
-						}}
-					></span>
+				<div key={data.id} className="legend-container">
+					<span style={{ background: data.color }} className="legend"></span>
 					<span>{data.id}</span>
 				</div>
 			))}
@@ -51,31 +33,11 @@ const Scatterplot = ({ graphData, minAxis }) => (
 			colors={graphData.map(c => c.color)}
 			blendMode="multiply"
 			tooltip={({ node }) => (
-				<div
-					style={{
-						background: 'white',
-						color: 'inherit',
-						fontSize: 'inherit',
-						borderRadius: 2,
-						boxShadow: 'rgba(0, 0, 0, 0.25) 0px 1px 2px',
-						padding: '5px 9px'
-					}}
-				>
-					<div
-						style={{
-							whiteSpace: 'pre',
-							display: 'flex',
-							alignItems: 'center'
-						}}
-					>
+				<div className="tooltip-container">
+					<div className="tooltip-data">
 						<span
-							style={{
-								display: 'block',
-								width: 12,
-								height: 12,
-								background: node.style.color,
-								marginRight: 7
-							}}
+							className="node-color"
+							style={{ background: node.style.color }}
 						></span>
 						<span>
 							<strong>{node.data.serieId}: </strong>
