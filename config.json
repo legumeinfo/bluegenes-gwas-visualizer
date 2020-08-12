@@ -1,0 +1,21 @@
+{
+  "accepts": ["id", "ids"],
+  "classes": ["GWAS"],
+  "columnMapping": {
+    "Gene": {
+      "id": "primaryIdentifier"
+    },
+    "Protein": {
+      "id": "primaryAccession"
+    }
+  },
+  "files" : {
+    "css" : "dist/style.css",
+    "js" : "dist/bundle.js"
+  },
+  "toolName" : {
+    "human" :"Bluegenes GWAS Visualizer",
+    "cljs" :"bluegenesGWASVisualizer"    
+  },
+  "version": 2
+}
