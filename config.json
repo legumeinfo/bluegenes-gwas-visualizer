@@ -1,8 +1,6 @@
 {
-  "accepts": ["ids"],
-  "classes":
-    ["Gene"]
-  ,
+  "accepts": ["id", "ids"],
+  "classes": ["GWAS"],
   "columnMapping": {
     "Gene": {
       "id": "primaryIdentifier"
