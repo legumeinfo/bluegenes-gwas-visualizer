@@ -17,10 +17,18 @@ const Scatterplot = ({ graphData, minAxis }) => (
     width={window.innerWidth - 50}
     margin={{ top: 30, right: 90, bottom: 60, left: 90 }}
     xScale={{
-	type: 'linear',
-	min: Math.round(minAxis.minX) - 5,
-	max: Math.round(minAxis.maxX) + 5
+        type: 'linear',
+        min: 1,
+        max: 'auto'
     }}
+    gridXValues={
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    }
+    // xScale={{
+    //     type: 'linear',
+    //     min: Math.round(minAxis.minX) - 5,
+    //     max: Math.round(minAxis.maxX) + 5
+    // }}
     yScale={{
 	type: 'linear',
 	min: Math.round(minAxis.minY) - 5,
@@ -33,26 +41,18 @@ const Scatterplot = ({ graphData, minAxis }) => (
     colors={graphData.map(c => c.color)}
     blendMode="multiply"
     tooltip={({ node }) => (
-	    <div className="tooltip-container">
+	  <div className="tooltip-container">
 	    <div className="tooltip-data">
-	    <span
-	className="node-color"
-	style={{ background: node.style.color }}
-	    ></span>
-	    <span>
-	    <strong>{node.data.serieId}: </strong>
-	    {node.data.tooltip}
-	</span>
+	      <span className="node-color" style={{ background: node.style.color }}></span>
+	      {node.data.serieId}
 	    </div>
+            <div>
+              {node.data.tooltip}
+            </div>
 	    <div>
-	    <strong>Marker Position: </strong>
-	    {node.data.x}
-	</div>
-	    <div>
-	    <strong>log10(p-value): </strong>
-	    {node.data.y}
-	</div>
-	    </div>
+              -log10(p)={Number.parseFloat(node.data.y).toPrecision(4)}
+            </div>
+	  </div>
     )}
     axisBottom={{
 	orient: 'bottom',

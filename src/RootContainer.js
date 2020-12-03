@@ -10,6 +10,8 @@ const RootContainer = ({ serviceUrl, entity }) => {
     const [graphData, setGraphData] = useState([]);
     const [minAxis, setminAxis] = useState({});
 
+    var title = [];
+
     useEffect(() => {
 	setLoading(true);
 	let { value } = entity;
@@ -27,17 +29,17 @@ const RootContainer = ({ serviceUrl, entity }) => {
     useEffect(() => {
 	const obj = {};
 	let minX = Number.MAX_SAFE_INTEGER,
-	    minY = minX,
+	    minY = Number.MAX_SAFE_INTEGER,
 	    maxX = Number.MIN_SAFE_INTEGER,
-	    maxY = maxX,
+	    maxY = Number.MIN_SAFE_INTEGER,
 	    index = 0;
 	data.forEach(d => {
 	    d.results.forEach(r => {
 		if (
-		    !r.marker ||
-			!r.pValue ||
-			!r.marker.chromosome ||
-			!r.marker.chromosomeLocation
+		    !r.marker
+                        || !r.pValue
+                        || !r.marker.chromosome
+                        || !r.marker.chromosomeLocation
 		)
 		    return;
 		const { primaryIdentifier } = r.phenotype;
@@ -50,18 +52,19 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		    };
 		const allDigits = chromosome.secondaryIdentifier.match(/\d+/g) || [];
 		const xAxisVal = allDigits.length
-		      ? allDigits[allDigits.length - 1] * 1 - 1
+		      ? allDigits[allDigits.length - 1] * 1
 		      : 0;
 		const x = xAxisVal + chromosomeLocation.start / chromosome.length;
 		const y = -1 * Math.log10(r.pValue);
-		minX = Math.min(x, minX);
+                minX = Math.min(x, minX);
 		minY = Math.min(y, minY);
 		maxX = Math.max(x, maxX);
 		maxY = Math.max(y, maxY);
+                const markerLocation = r.marker.secondaryIdentifier + ' @ ' + r.marker.chromosome.secondaryIdentifier + ':' + r.marker.chromosomeLocation.start;
 		obj[primaryIdentifier].data.push({
 		    x,
 		    y,
-		    tooltip: r.marker && r.marker.primaryIdentifier
+		    tooltip: markerLocation
 		});
 	    });
 	});
@@ -71,7 +74,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 
     return (
 	    <div className="rootContainer">
-	    <span className="chart-title">GWAS Visualizer</span>
+	    <span className="chart-title"></span>
 	    {!loading ? (
 		    <div className="graph">
 		    {graphData.length ? (
