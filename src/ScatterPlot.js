@@ -15,16 +15,16 @@ const Scatterplot = ({ graphData, minAxis }) => (
         data={graphData}
     /* height={window.innerHeight - 150} */
     /* width={window.innerWidth - 50} */
-        height={300}
-        width={1200}
-        margin={{ top: 30, right: 90, bottom: 60, left: 90 }}
+        height={400}
+        width={1156}
+        margin={{ top: 10, right: 30, bottom: 60, left: 70 }}
         xScale={{
             type: 'linear',
             min: 1,
             max: 'auto'
         }}
         gridXValues={
-            [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+            [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
         }
         yScale={{
             type: 'linear',
