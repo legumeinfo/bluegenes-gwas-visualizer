@@ -34,51 +34,51 @@
     </head>
 
     <body>
-        <div class="bluegenesGWASVisualizer" id='yourDiv' />
-        <script>
-         window.onload = function() {
-	     //The element to attach the viewer to. Must be an existing DOM element
-    	     var elem = document.getElementById('yourDiv'),
-    		 //InterMine service, including URL and token.
-    		     imURL = {
-                         root: 'https://mines.legumeinfo.org/soymine/',
-    			 //could include token here too if we had one
-    		     },
-    		 //this is an example of data that could be passed to this tool be BlueGenes
-    	     //in reality (outside the demo) this would be dynamic and not hard-coded
-    	     // to an ID.
-    		     dataToInitialiseToolWith = {
-                         'GWAS': {
-                             class: 'GWAS',
-                             format: 'ids',
-                             value: [14000058, 14000059, 14000060, 14000061]
-                         }
-    		     },
-    		 toolState = {}, //to be confirmed how we use this.
-                 navigate = function(type, data, mine) {
-                     // Helpful console message when calling navigate function.
-                     var someMine = mine ? "on ".concat(mine) : null;
-                     var msg = ["Navigating to", type, someMine, "with data:"]
-                         .filter(function(e) { return e }) // remove falsy elements
-                         .join(" ");
-                     console.log(msg, data);
-                 };
-    	     // THIS LINE IS THE IMPORTANT BIT. YOU SHOULDN'T NEED TO EDIT IT
-    	     // the method signature should match the signature in src/index.js
-    	     $.ajax('config.json').then(function(config) {
-    		 bluegenesGWASVisualizer.main(
-    		     elem,
-                     imURL,
-                     dataToInitialiseToolWith,
-                     toolState,
-                     config,
-                     navigate
-                 );
-    	     });
-         };
-        </script>
-        <script src="dist/bundle.js"></script>
-
+        <div style="margin:auto; width:1178px; border:1px solid #ccc;">
+            <div class="bluegenesGWASVisualizer" id='yourDiv' />
+            <script>
+             window.onload = function() {
+	         //The element to attach the viewer to. Must be an existing DOM element
+    	         var elem = document.getElementById('yourDiv'),
+    		     //InterMine service, including URL and token.
+    		         imURL = {
+                             root: 'https://mines.legumeinfo.org/soymine/',
+    			     //could include token here too if we had one
+    		         },
+    		     //this is an example of data that could be passed to this tool be BlueGenes
+    	         //in reality (outside the demo) this would be dynamic and not hard-coded
+    	         // to an ID.
+    		         dataToInitialiseToolWith = {
+                             'GWAS': {
+                                 class: 'GWAS',
+                                 format: 'ids',
+                                 value: [14000058, 14000059, 14000060, 14000061]
+                             }
+    		         },
+    		     toolState = {}, //to be confirmed how we use this.
+                     navigate = function(type, data, mine) {
+                         // Helpful console message when calling navigate function.
+                         var someMine = mine ? "on ".concat(mine) : null;
+                         var msg = ["Navigating to", type, someMine, "with data:"]
+                             .filter(function(e) { return e }) // remove falsy elements
+                             .join(" ");
+                         console.log(msg, data);
+                     };
+    	         // THIS LINE IS THE IMPORTANT BIT. YOU SHOULDN'T NEED TO EDIT IT
+    	         // the method signature should match the signature in src/index.js
+    	         $.ajax('config.json').then(function(config) {
+    		     bluegenesGWASVisualizer.main(
+    		         elem,
+                         imURL,
+                         dataToInitialiseToolWith,
+                         toolState,
+                         config,
+                         navigate
+                     );
+    	         });
+             };
+            </script>
+            <script src="dist/bundle.js"></script>
+        </div>
     </body>
-
 </html>

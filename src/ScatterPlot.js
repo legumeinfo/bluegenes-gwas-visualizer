@@ -16,7 +16,7 @@ const Scatterplot = ({ graphData, minAxis }) => (
     /* height={window.innerHeight - 150} */
     /* width={window.innerWidth - 50} */
         height={400}
-        width={1156}
+        width={1176}
         margin={{ top: 10, right: 30, bottom: 60, left: 70 }}
         xScale={{
             type: 'linear',
