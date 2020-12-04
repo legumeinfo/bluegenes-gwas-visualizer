@@ -34,6 +34,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	    maxY = Number.MIN_SAFE_INTEGER,
 	    index = 0;
 	data.forEach(d => {
+            const gwasIdentifier = d.primaryIdentifier;
 	    d.results.forEach(r => {
 		if (
 		    !r.marker
@@ -60,7 +61,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		minY = Math.min(y, minY);
 		maxX = Math.max(x, maxX);
 		maxY = Math.max(y, maxY);
-                const markerLocation = r.marker.secondaryIdentifier + ' @ ' + r.marker.chromosome.secondaryIdentifier + ':' + r.marker.chromosomeLocation.start;
+                const markerLocation = '[' + gwasIdentifier + "] " + r.marker.secondaryIdentifier + ' @ ' + r.marker.chromosome.secondaryIdentifier + ':' + r.marker.chromosomeLocation.start;
 		obj[primaryIdentifier].data.push({
 		    x,
 		    y,
@@ -74,7 +75,6 @@ const RootContainer = ({ serviceUrl, entity }) => {
 
     return (
 	    <div className="rootContainer">
-	    <span className="chart-title"></span>
 	    {!loading ? (
 		    <div className="graph">
 		    {graphData.length ? (
