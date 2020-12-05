@@ -14,7 +14,7 @@ const Scatterplot = ({ graphData, minAxis }) => (
       <ScatterPlot
         data={graphData}
         height={400}
-        width={1176}
+        width={1079}
         margin={{ top: 10, right: 30, bottom: 60, left: 70 }}
         xScale={{
             type: 'linear',
